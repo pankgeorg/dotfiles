@@ -83,7 +83,7 @@ inoremap <Up>    <ESC>:echoe "Use k"<CR>
 inoremap <Down>  <ESC>:echoe "Use j"<CR>
 
 map <C-l> :NERDTreeToggle<CR>
-inoremap <C-l> :NERDTreeToggle<CR>
+inoremap <C-l> <ESC>:NERDTreeToggle<CR>
 
 " ctrlP config
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
