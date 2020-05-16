@@ -13,3 +13,4 @@
     - ~/.vim/undo-history
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
+    - [cp alacritty.yml /mnt/c/Users/pankg/AppData/Roaming/alacritty/alacritty.yml]

@@ -52,6 +52,7 @@ set smartcase
 
 " Enable searching as you type, rather than waiting till you press enter.
 set incsearch
+runtime macros/matchit.vim
 
 " Unbind some useless/annoying default key bindings.
 nmap Q <Nop> " 'Q' in normal mode enters Ex mode. You almost never want this.
@@ -83,9 +84,56 @@ inoremap <Up>    <ESC>:echoe "Use k"<CR>
 inoremap <Down>  <ESC>:echoe "Use j"<CR>
 
 map <C-l> :NERDTreeToggle<CR>
-inoremap <C-l> <ESC>:NERDTreeToggle<CR>
+inoremap <C-l> :NERDTreeToggle<CR>
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'default'
+
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 
 " ctrlP config
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+
+set expandtab
+set tabstop=4
+set shiftwidth=4
+let g:airline#extensions#ale#enabled = 1
+
+if has("autocmd")
+    autocmd FileType make   set noexpandtab
+    autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
+endif
+
+" ALE configuration
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['prettier', 'eslint'],
+\   'python': ['black', 'isort'],
+\}
+let g:ale_linters = {
+\   'python': ['pylint'],
+\}
+
+" Set this variable to 1 to fix files when you save them.
+let g:ale_fix_on_save = 1
+let g:ale_echo_cursor = 1
+let g:ale_echo_msg_error_str = 'Error'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_echo_msg_warning_str = 'Warning'
+let g:ale_sign_column_always = 1
+let g:ale_enabled = 1
+let g:ale_keep_list_window_open = 0
+let g:ale_lint_delay = 200
+let g:ale_lint_on_enter = 1
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 1
+let g:ale_set_quickfix = 1
+let g:ale_set_signs = 1
+let g:ale_sign_error = '💣'
+let g:ale_sign_warning = '🚩'
+let g:ale_statusline_format = ['💣 %d', '🚩 %d', '~']
+let g:ale_warn_about_trailing_whitespace = 1
 
